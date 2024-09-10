@@ -13,9 +13,11 @@ public class EmployeeWage {
             if(empCheck==isFullTime)
             {
                 empHrs=8;
+                System.out.println("Employee is Present..");
             }
             else{
                 empHrs=0;
+                System.out.println("Employee is Absent");
             }
             empWage=empHrs*empRatePerHour;
             System.out.println("Emp Wages : "+empWage);
