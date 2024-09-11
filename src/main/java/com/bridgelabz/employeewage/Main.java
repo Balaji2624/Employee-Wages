@@ -8,5 +8,8 @@ public class Main {
 
         EmployeeWageCalculator company2 = new EmployeeWageCalculator("Company B", 25, 3,15);
         company2.computeEmpWage();
+
+        company1.displayCompanyWage();
+        company2.displayCompanyWage();
     }
 }

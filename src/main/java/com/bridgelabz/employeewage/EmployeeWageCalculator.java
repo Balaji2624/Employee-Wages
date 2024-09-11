@@ -5,15 +5,17 @@ package com.bridgelabz.employeewage;
         private int empRatePerHour;
         private int numOfWorkingDays;
         private int maxHrsInMonth;
+        private int totalEmpWage;
 
         public EmployeeWageCalculator(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHrsInMonth) {
             this.companyName = companyName;
             this.empRatePerHour = empRatePerHour;
             this.numOfWorkingDays = numOfWorkingDays;
             this.maxHrsInMonth = maxHrsInMonth;
+            this.totalEmpWage = 0;
         }
 
-        public int computeEmpWage() {
+        public void computeEmpWage() {
             int empHrs = 0;
             int totalEmpHrs = 0;
             int totalWorkingDays = 0;
@@ -40,7 +42,16 @@ package com.bridgelabz.employeewage;
 
             int totalEmpWage = totalEmpHrs * empRatePerHour;
             System.out.println("Total Emp Wage for company " + totalWorkingDays + " days: " + totalEmpWage);
+
+        }
+        public int getTotalEmpWage()
+        {
             return totalEmpWage;
         }
+        public void displayCompanyWage(){
+            System.out.println("Company : "+companyName+" Total Employee Wage : "+totalEmpWage);
+        }
+
+
 
     }
