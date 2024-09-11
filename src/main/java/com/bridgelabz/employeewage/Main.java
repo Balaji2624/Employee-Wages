@@ -2,14 +2,12 @@ package com.bridgelabz.employeewage;
 
 public class Main {
     public static void main(String[] args) {
+        EmployeeWageManager wageManager = new EmployeeWageManager();
 
-        EmployeeWageCalculator company1 = new EmployeeWageCalculator("Company A", 20, 2,10);
-        company1.computeEmpWage();
+        wageManager.addCompany("Company A", 20, 2, 10);
+        wageManager.addCompany("Company B", 25, 3, 15);
+        wageManager.addCompany("Company C", 30, 4, 20);
 
-        EmployeeWageCalculator company2 = new EmployeeWageCalculator("Company B", 25, 3,15);
-        company2.computeEmpWage();
-
-        company1.displayCompanyWage();
-        company2.displayCompanyWage();
+        wageManager.displayAllCompanyWages();
     }
 }

@@ -1,6 +1,9 @@
 package com.bridgelabz.employeewage;
 
-    public class EmployeeWageCalculator {
+import java.util.ArrayList;
+import java.util.List;
+
+public class EmployeeWageCalculator {
         private String companyName;
         private int empRatePerHour;
         private int numOfWorkingDays;
@@ -55,3 +58,21 @@ package com.bridgelabz.employeewage;
 
 
     }
+class EmployeeWageManager {
+    private List<EmployeeWageCalculator> companyWageList;
+
+    public EmployeeWageManager() {
+        companyWageList = new ArrayList<>();
+    }
+
+    public void addCompany(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHrsInMonth) {
+        EmployeeWageCalculator company = new EmployeeWageCalculator(companyName, empRatePerHour, numOfWorkingDays, maxHrsInMonth);
+        company.computeEmpWage();
+        companyWageList.add(company);
+    }
+    public void displayAllCompanyWages() {
+        for (EmployeeWageCalculator company : companyWageList) {
+            company.displayCompanyWage();
+        }
+    }
+}
