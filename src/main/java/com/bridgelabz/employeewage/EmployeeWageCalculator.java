@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 interface EmployeeWageCalculatorInterface {
     void computeEmpWage();
+    int getTotalEmpWage();
     void displayCompanyWage();
+    String getCompanyName();
 }
 public class EmployeeWageCalculator implements EmployeeWageCalculatorInterface  {
         private String companyName;
@@ -57,6 +59,12 @@ public class EmployeeWageCalculator implements EmployeeWageCalculatorInterface  
             System.out.println("Total Employee Wage for company " + companyName + " is: " + totalEmpWage);
 
         }
+         public int getTotalEmpWage() {
+           return totalEmpWage;
+         }
+        public String getCompanyName() {
+          return companyName;
+        }
 
         public void displayCompanyWage(){
             System.out.println("Company : "+companyName+" Total Employee Wage : "+totalEmpWage);
@@ -89,5 +97,14 @@ class EmployeeWageManager {
         for (int i = 0; i < numCompanies; i++) {
             companyWageArray[i].displayCompanyWage();
         }
+    }
+    public int getTotalWageByCompany(String companyName) {
+        for (int i = 0; i < numCompanies; i++) {
+            if (companyWageArray[i].getCompanyName().equals(companyName)) {
+                return companyWageArray[i].getTotalEmpWage();
+            }
+        }
+        System.out.println("Company " + companyName + " not found.");
+        return -1;
     }
 }

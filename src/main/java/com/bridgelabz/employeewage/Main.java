@@ -10,5 +10,11 @@ public class Main {
 
         wageManager.addCompany("Company D", 40, 5, 20);
         wageManager.displayAllCompanyWages();
+
+        String companyToQuery = "Company B";
+        int totalWage = wageManager.getTotalWageByCompany(companyToQuery);
+        if (totalWage != -1) {
+            System.out.println("Total wage for " + companyToQuery + " is: " + totalWage);
+        }
     }
 }
