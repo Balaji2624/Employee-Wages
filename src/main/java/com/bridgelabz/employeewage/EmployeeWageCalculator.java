@@ -1,6 +1,7 @@
 package com.bridgelabz.employeewage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 interface EmployeeWageCalculatorInterface {
     void computeEmpWage();
@@ -12,6 +13,8 @@ public class EmployeeWageCalculator implements EmployeeWageCalculatorInterface  
         private int numOfWorkingDays;
         private int maxHrsInMonth;
         private int totalEmpWage;
+        private int[] dailyWages;
+        private int currentdayIndex;
 
         public EmployeeWageCalculator(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHrsInMonth) {
             this.companyName = companyName;
@@ -19,6 +22,8 @@ public class EmployeeWageCalculator implements EmployeeWageCalculatorInterface  
             this.numOfWorkingDays = numOfWorkingDays;
             this.maxHrsInMonth = maxHrsInMonth;
             this.totalEmpWage = 0;
+            this.dailyWages = new int[numOfWorkingDays];
+            this.currentdayIndex = 0;
         }
 
         public void computeEmpWage() {
@@ -43,16 +48,19 @@ public class EmployeeWageCalculator implements EmployeeWageCalculatorInterface  
                 }
 
                 totalEmpHrs += empHrs;
-                System.out.println("company name : "+companyName+" Day#: " + totalWorkingDays + " Emp Hrs: " + empHrs);
+                int dailyWage = empHrs * empRatePerHour;
+                dailyWages[currentdayIndex++] = dailyWage;
+                System.out.println("company name : "+companyName+" Day#: " + totalWorkingDays + " Emp Hrs: " + empHrs+" daily Wage : "+dailyWage);
             }
 
             int totalEmpWage = totalEmpHrs * empRatePerHour;
-            System.out.println("Total Emp Wage for company " + totalWorkingDays + " days: " + totalEmpWage);
+            System.out.println("Total Employee Wage for company " + companyName + " is: " + totalEmpWage);
 
         }
 
         public void displayCompanyWage(){
             System.out.println("Company : "+companyName+" Total Employee Wage : "+totalEmpWage);
+            System.out.println("Daily Wages: " + Arrays.toString(dailyWages));
         }
 
 
