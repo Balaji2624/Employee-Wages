@@ -2,8 +2,11 @@ package com.bridgelabz.employeewage;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class EmployeeWageCalculator {
+interface EmployeeWageCalculatorInterface {
+    void computeEmpWage();
+    void displayCompanyWage();
+}
+public class EmployeeWageCalculator implements EmployeeWageCalculatorInterface  {
         private String companyName;
         private int empRatePerHour;
         private int numOfWorkingDays;
@@ -47,10 +50,7 @@ public class EmployeeWageCalculator {
             System.out.println("Total Emp Wage for company " + totalWorkingDays + " days: " + totalEmpWage);
 
         }
-        public int getTotalEmpWage()
-        {
-            return totalEmpWage;
-        }
+
         public void displayCompanyWage(){
             System.out.println("Company : "+companyName+" Total Employee Wage : "+totalEmpWage);
         }
@@ -59,19 +59,18 @@ public class EmployeeWageCalculator {
 
     }
 class EmployeeWageManager {
-    private List<EmployeeWageCalculator> companyWageList;
+    private List<EmployeeWageCalculatorInterface> companyWageList;
 
     public EmployeeWageManager() {
         companyWageList = new ArrayList<>();
     }
 
-    public void addCompany(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHrsInMonth) {
-        EmployeeWageCalculator company = new EmployeeWageCalculator(companyName, empRatePerHour, numOfWorkingDays, maxHrsInMonth);
+    public void addCompany(EmployeeWageCalculatorInterface company) {
         company.computeEmpWage();
         companyWageList.add(company);
     }
     public void displayAllCompanyWages() {
-        for (EmployeeWageCalculator company : companyWageList) {
+        for (EmployeeWageCalculatorInterface company : companyWageList) {
             company.displayCompanyWage();
         }
     }
