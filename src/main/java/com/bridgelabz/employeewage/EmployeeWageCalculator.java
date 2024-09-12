@@ -59,19 +59,27 @@ public class EmployeeWageCalculator implements EmployeeWageCalculatorInterface  
 
     }
 class EmployeeWageManager {
-    private List<EmployeeWageCalculatorInterface> companyWageList;
+    private EmployeeWageCalculatorInterface[] companyWageArray;
+    private int numCompanies;
 
-    public EmployeeWageManager() {
-        companyWageList = new ArrayList<>();
+    public EmployeeWageManager(int totalCompanies) {
+        companyWageArray = new EmployeeWageCalculatorInterface[totalCompanies];  // Initialize the array
+        numCompanies = 0;
     }
 
-    public void addCompany(EmployeeWageCalculatorInterface company) {
-        company.computeEmpWage();
-        companyWageList.add(company);
+    public void addCompany(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHrsInMonth) {
+        if (numCompanies < companyWageArray.length) {
+            EmployeeWageCalculator company = new EmployeeWageCalculator(companyName, empRatePerHour, numOfWorkingDays, maxHrsInMonth);
+            company.computeEmpWage();
+            companyWageArray[numCompanies] = company;
+            numCompanies++;
+        } else {
+            System.out.println("Cannot add more companies. Array is full.");
+        }
     }
     public void displayAllCompanyWages() {
-        for (EmployeeWageCalculatorInterface company : companyWageList) {
-            company.displayCompanyWage();
+        for (int i = 0; i < numCompanies; i++) {
+            companyWageArray[i].displayCompanyWage();
         }
     }
 }
